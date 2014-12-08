@@ -27,10 +27,11 @@ int main(int argc,char *argv[]) {
 
     mainloop:;
     char *buf=malloc(4096);
-    while (fgets(buf,4095,fryend)) {
-        strfry(buf);
+    while (fgets(buf,4095,fryend)) { //linefeed is intentionally left in the string
+        strfry(buf);  // this way, randomisation increases
         fputs(buf,stdout);
     }
+    
     free(buf);
     if (fryend!=stdin) fclose(fryend);
     return 0;
