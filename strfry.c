@@ -19,6 +19,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
+#include "sys/mman.h"
 
 int main(int argc,char *argv[]) {
     FILE *fryend=stdin;
@@ -27,11 +28,10 @@ int main(int argc,char *argv[]) {
 
     mainloop:;
     char *buf=malloc(4096);
-    while (fgets(buf,4095,fryend)) { //linefeed is intentionally left in the string
-        strfry(buf);  // this way, randomisation increases
+    while (fgets(buf,4095,fryend)) {
+        strfry(buf);
         fputs(buf,stdout);
     }
-    
     free(buf);
     if (fryend!=stdin) fclose(fryend);
     return 0;
